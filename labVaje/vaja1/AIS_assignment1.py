@@ -31,7 +31,7 @@ while(True):
     ## Convert the frame to GRAYSCALE
     # Grayscale images are easier to process and are often used in image analysis.
     grayFrame = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
-    #cv2.imshow("Grayscale",grayFrame)
+    cv2.imshow("Grayscale",grayFrame)
 
     ## Apply histogram equalization for high CONTRAST
     # This enhances the contrast of the grayscale image by spreading out the most frequent intensity values.
@@ -43,12 +43,12 @@ while(True):
     # Gaussian Blur
     # This filter smooths the image by averaging the pixels in a defined kernel size (5x5).
     GBGrayFrame = cv2.GaussianBlur(HCGrayFrame,(5,5),cv2.BORDER_DEFAULT) 
-    # cv2.imshow("Gaussian Blur", GBGrayFrame)
+    cv2.imshow("Gaussian Blur", GBGrayFrame)
 
     # Bilateral Filter
     # This filter reduces noise while preserving edges. It uses both spatial and intensity information.
     BFGrayFrame = cv2.bilateralFilter(HCGrayFrame, 9, 75, 75)
-    #cv2.imshow("Bilateral Filter",BFGrayFrame)
+    cv2.imshow("Bilateral Filter",BFGrayFrame)
 
     ## EDGE DETECTION 
 
@@ -84,7 +84,7 @@ while(True):
     ## NALOGA 3
 
     # FACE DETECTION 
-
+    
     frame_faces = copy.deepcopy(frame)
     #frame_faces = cv2.imread("/home/miha/Projects/AIS/labVaje/vaja1/data/oscar.jpg")
     grayFrame_faces = cv2.cvtColor(frame_faces,cv2.COLOR_BGR2GRAY)
@@ -104,14 +104,14 @@ while(True):
         cv2.rectangle(frame_faces, (x, y), (x+w, y+h), (255, 0, 255), 2)
     # Show the image with the detected faces
     cv2.imshow('Face Detection', frame_faces)
-
+    
 
     ## NALOGA 4
-
+    
     # FACE DETECTION with MTCNN
 
-    #frame_faces_mtcnn = copy.deepcopy(frame)
-    frame_faces_mtcnn = cv2.imread("/home/miha/Projects/AIS/labVaje/vaja1/data/oscar.jpg")
+    frame_faces_mtcnn = copy.deepcopy(frame)
+    #frame_faces_mtcnn = cv2.imread("/home/miha/Projects/AIS/labVaje/vaja1/data/oscar.jpg")
     # Detect faces in the frame
     faces_mtcnn = detector.detect_faces(frame_faces_mtcnn)
 
@@ -122,7 +122,7 @@ while(True):
 
     # Display the frame with detected faces
     cv2.imshow('Real-Time Face Detection (MTCNN)', frame_faces_mtcnn)
-
+    
 
 
     # Exit the loop when user presses any key
